@@ -73,17 +73,26 @@ public class MainApp {
 		List<User> users = userService.listUsers();
 		
 		for (User user : users) {
-			System.out.println("Id = " + user.getId());
-			System.out.println("First Name = " + user.getFirstName());
-			System.out.println("Last Name = " + user.getLastName());
-			System.out.println("Email = " + user.getEmail());
-			System.out.println("Car:");
-			System.out.println("\tCar Id = " + user.getCar().getId());
-			System.out.println("\tCar Model = " + user.getCar().getModel());
-			System.out.println("\tCar Series = " + user.getCar().getId());
-			System.out.println();
+			printUserInfo(user);
 		}
 		
+		User foundUser1 = userService.getUserByCarModelAndSeries(car1.getModel(), car1.getSeries());
+		
+		System.out.println("Found User:");
+		printUserInfo(foundUser1);
+		
 		context.close();
+	}
+	
+	private static void printUserInfo(User user) {
+		System.out.println("Id = " + user.getId());
+		System.out.println("First Name = " + user.getFirstName());
+		System.out.println("Last Name = " + user.getLastName());
+		System.out.println("Email = " + user.getEmail());
+		System.out.println("Car:");
+		System.out.println("\tCar Id = " + user.getCar().getId());
+		System.out.println("\tCar Model = " + user.getCar().getModel());
+		System.out.println("\tCar Series = " + user.getCar().getId());
+		System.out.println();
 	}
 }
